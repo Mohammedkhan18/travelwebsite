@@ -21,19 +21,11 @@ h1 {
     font-size: ;
 }
 
-.section-title h2 {
+h2 {
     font-family: 'Marhey';
     text-align: center;
-    font-size: 3em;
+    font-size: 2.5em;
     padding-top: 90px;
-}
-
-h2 {
-    border-bottom: 3px solid black;
-    margin: 0px 0px 0px -16px;
-    width: 32px;
-    height: 50px;
-
 }
 
 .container {
