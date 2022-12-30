@@ -1,7 +1,5 @@
 :root {
     --primary-color: rgba(13, 110, 139, 0.75);
-    --overlay-color: rgba(24,39,51,0.65);
-    --menu-speed: 0.75s;
 }
 
 * {
@@ -13,15 +11,16 @@
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.4;
-    background-color: skyblue;
+    background-color: #15AAF0;
 }
 
 h1 {
     font-family: 'Marhey';
-    font-size: ;
 }
 
-h2 {
+
+
+.section-title h2 {
     font-family: 'Marhey';
     text-align: center;
     font-size: 2.5em;
@@ -35,14 +34,13 @@ h2 {
     padding: 0 3rem;
 }
 
- .showcase {
+ #showcase {
     background: var(--primary-color);
-    color: #fff;
+    color: white;
     height: 100vh;
-    position: relative;
 }
 
-.showcase:before {
+#showcase:before {
     content: '';
     background: url('../img/background.jpg');
     background-repeat: no-repeat;
@@ -56,23 +54,24 @@ h2 {
     z-index: -1;
 }
 
-.showcase .showcase-inner {
+#showcase .showcase-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     height: 100%;
+    position: static;
 }
 
-.showcase h1 {
+.#showcase h1 {
     font-size: 2rem;
 }
 
 .btn {
     display: inline-block;
     border: none;
-    background-color: skyblue;
+    background-color: #15AAF0;
     color: black;
     font-weight: bolder;
     padding: 0.75rem 1.5rem;
@@ -87,154 +86,99 @@ h2 {
 }
 
 /* navigation section */
-
-.menu-wrap {
+.sidebar {
     position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #08415C;
+    transition: all .5s ease;
 }
 
-.menu-wrap .toggler {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    opacity: 0;
+.sidebar .logo {
+    text-align: center;
+    padding: 30px;
 }
 
-.menu-wrap .hamburger {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 60px;
-    height: 60px;
-    padding: 1rem;
-    background: transparent;
-    display: flex;
-    align-items: center;
+
+.sidebar ul a {
+    margin-top: 20px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
     justify-content: center;
+    align-items: center;
 }
 
-/* Hamburger line */
-.menu-wrap .hamburger > div {
+ul li:hover a {
+    background-color:#118AC2 ;
+}
+
+#check {
+    display: none;
+}
+
+label #btn,label, #cancel {
+    position: fixed;
+    z-index: 1;
+    cursor: pointer;
+}
+
+label #btn {
+    left: 20px;
+    top: 25px;
+    font-size: 35px;
+    color: white;
+    transition: all .5s ease;
+}
+
+label #btn:hover {
+    transform: rotate(180deg);
+}
+
+label #cancel {
+    z-index: 1111;
+    left: -195px;
+    top: 17px;
+    color: white;
+    font-size: 30px;
+    padding: 4px 9px;
+    transition: all .5s ease;
+}
+
+label #cancel:hover {
+    transform: rotate(180deg);
+}
+
+#check:checked ~ .sidebar {
+    left: 0;
+}
+
+#check:checked ~ label #btn {
+    left: 100px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#check:checked ~ label #cancel {
+    left: 195px;
+}
+
+
+
+/* Attractions section */
+
+.container2 {
     position: relative;
     width: 100%;
-    height: 2px;
-    background-color: #fff;
+    margin-left: 20px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    transition:  all 0.4s ease-in-out;
+    flex-wrap: wrap;
+    z-index: -1;
 }
-
-/* Top and bottom lines */
-
-.menu-wrap .hamburger > div::before, 
-.menu-wrap .hamburger > div::after {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    top: -10px;
-    width: 100%;
-    height: 2px;
-    background: inherit;
-}
-
-/* Moves line down */
-.menu-wrap .hamburger > div::after {
-    top: 10px;
-}
-
-/* Toggler animate */
-.menu-wrap .toggler:checked + .hamburger > div {
-    transform: rotate(135deg);
-}
-
-/* Turn lines into X */
-.menu-wrap .toggler:checked + .hamburger >div:before,
-.menu-wrap .toggler:checked + .hamburger > div:after {
-    top: 0;
-    transform: rotate(90deg);
-}
-
-/* Rotate on hover when checked */
-.menu-wrap .toggler:checked:hover + .hamburger > div {
-    transform: rotate(225deg);
-}
-
-/* Show menu */
-.menu-wrap .toggler:checked ~ .menu {
-    visibility: visible;
-}
-
-.menu-wrap .toggler:checked ~ .menu > div {
-    transform: scale(1);
-    transition-duration: var(--menu-speed);
-}
-
-.menu-wrap .toggler:checked ~ .menu > div > div {
-    opacity: 1;
-    transition: opacity 0.4s ease-in-out;
-}
-
-.menu-wrap .menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; 
-    visibility: hidden; 
-    overflow: hidden;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-}
-
-.menu-wrap .menu > div {
-    background: var(--overlay-color);
-    border-radius: 50%;
-    width: 200vw;
-    height: 200vw;
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-    transform: scale(0); 
-   transition: all 0.4s ease-in-out;
-}
-
-
-.menu-wrap .menu > div > div {
-    text-align: center;
-    max-width: 90vw;
-    max-height: 100vh; 
-     opacity: 0; 
-    transition: opacity 0.4s ease-in-out;
-}
-
-.menu-wrap .menu > div > div > ul > li {
-    list-style: none;
-    color: #fff;
-    font-size: 1.5rem;
-    padding: 1rem;
-}
-
-.menu-wrap .menu > div > div > ul > li > a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.4s ease-in-out;
-    font-family: 'Marhey';
-}
-
- .menu li:hover {
-    background-color: rgb(13, 110, 139);
-    border: 2px solid whitesmoke;
-}
-
-
-
